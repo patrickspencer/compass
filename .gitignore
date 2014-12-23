@@ -52,3 +52,12 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Node.js items
+frontend/node_modules
+frontend/dist
+frontend/.tmp
+frontend/.sass-cache
+frontend/app/bower_components
+frontend/test/bower_components
+

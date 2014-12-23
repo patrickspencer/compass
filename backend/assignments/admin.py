@@ -1,5 +1,5 @@
 from django.contrib import admin
-from compass.assignments.models import Assignment, Problem
+from backend.assignments.models import Assignment, Problem
 
 admin.site.register(Assignment)
 admin.site.register(Problem)

@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'compass.assignments'
+    'backend.assignments'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -47,11 +47,12 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'backend.middleware.siteaccess.RequireLoginMiddleware',
 )
 
-ROOT_URLCONF = 'compass.urls'
+ROOT_URLCONF = 'backend.urls'
 
-WSGI_APPLICATION = 'compass.wsgi.application'
+WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 # Database
@@ -84,8 +85,19 @@ USE_TZ = True
 STATIC_URL = '/public/'
 
 STATICFILES_DIRS = (
-            os.path.join(BASE_DIR, 'public'),
+            os.path.join(BASE_DIR, 'frontend', 'dist'),
         )
 TEMPLATE_DIRS = (
-            os.path.join(BASE_DIR, 'compass','templates'),
+            os.path.join(BASE_DIR, 'backend','templates'),
         )
+
+LOGIN_REQUIRED_URLS = (
+    r'/secret/(.*)$',
+)
+LOGIN_REQUIRED_URLS_EXCEPTIONS = (
+    r'/secret/login(.*)$',
+    r'/secret/logout(.*)$',
+)
+
+LOGIN_URL = '/login/'
+
