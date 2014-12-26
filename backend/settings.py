@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_jinja',
     'backend.assignments'
 )
 
@@ -86,10 +87,10 @@ STATIC_URL = '/public/'
 
 STATICFILES_DIRS = (
             os.path.join(BASE_DIR, 'frontend', 'dist'),
-        )
+)
 TEMPLATE_DIRS = (
             os.path.join(BASE_DIR, 'backend','templates'),
-        )
+)
 
 LOGIN_REQUIRED_URLS = (
     r'/secret/(.*)$',
@@ -101,3 +102,9 @@ LOGIN_REQUIRED_URLS_EXCEPTIONS = (
 
 LOGIN_URL = '/login/'
 
+TEMPLATE_LOADERS = (
+            'django_jinja.loaders.FileSystemLoader',
+            'django_jinja.loaders.AppLoader'
+)
+
+DEFAULT_JINJA2_TEMPLATE_EXTENSION = '.jinja'

@@ -53,9 +53,11 @@ docs/_build/
 # PyBuilder
 target/
 
+# Development databse
+db.sqlite3
+
 # Node.js items
 frontend/node_modules
-frontend/dist
 frontend/.tmp
 frontend/.sass-cache
 frontend/app/bower_components

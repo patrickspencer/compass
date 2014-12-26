@@ -126,16 +126,6 @@ module.exports = function (grunt) {
             ]
         },
 
-        // Mocha testing framework configuration options
-        mocha: {
-            all: {
-                options: {
-                    run: true,
-                    urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
-                }
-            }
-        },
-
         // Add vendor prefixed styles
         autoprefixer: {
             options: {
@@ -193,29 +183,6 @@ module.exports = function (grunt) {
             css: ['<%= config.dist %>/styles/{,*/}*.css']
         },
 
-        // The following *-min tasks produce minified files in the dist folder
-        imagemin: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= config.app %>/images',
-                    src: '{,*/}*.{gif,jpeg,jpg,png}',
-                    dest: '<%= config.dist %>/images'
-                }]
-            }
-        },
-
-        svgmin: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= config.app %>/images',
-                    src: '{,*/}*.svg',
-                    dest: '<%= config.dist %>/images'
-                }]
-            }
-        },
-
         htmlmin: {
             dist: {
                 options: {
@@ -250,15 +217,15 @@ module.exports = function (grunt) {
         //         }
         //     }
         // },
-        // uglify: {
-        //     dist: {
-        //         files: {
-        //             '<%= config.dist %>/scripts/scripts.js': [
-        //                 '<%= config.dist %>/scripts/scripts.js'
-        //             ]
-        //         }
-        //     }
-        // },
+        uglify: {
+            dist: {
+                files: {
+                    '<%= config.dist %>/scripts/scripts.js': [
+                        '<%= config.app %>/scripts/student/{,*/}*.js'
+                    ]
+                }
+            }
+        },
         // concat: {
         //     dist: {}
         // },
@@ -277,10 +244,11 @@ module.exports = function (grunt) {
                         'images/{,*/}*.webp',
                         '{,*/}*.html',
                         'styles/fonts/{,*/}*.*',
-                        'bower_components/bootstrap-sass-twbs/assets/stylesheets/*.*'
+                        'scripts/vendor/{,*/}*.*'
                     ]
                 }]
             },
+
             styles: {
                 expand: true,
                 dot: true,
@@ -289,34 +257,27 @@ module.exports = function (grunt) {
                 src: '{,*/}*.css'
             }
         },
-        sass: {                              // Task
-          dist: {                            // Target
-            options: {                       // Target options
-              style: 'compressed'
-            },
-            files: {                         // Dictionary of files
+
+        sass: {
+          options: {
+            sourceMap: true,
+            style: 'compressed',
+          },
+          dist: {
+            files: {
               '<%= config.dist %>/styles/main.css':
               '<%= config.app %>/styles/{,*/}*.scss'
             }
           },
-          options: {
-            loadPath: [
-              'app/bower_components/bootstrap-sass-twbs/assets/stylesheets'
-            ]
-          }
         },
+
         // Run some tasks in parallel to speed up build process
         concurrent: {
-            server: [
-                'copy:styles'
-            ],
             test: [
                 'copy:styles'
             ],
             dist: [
                 'copy:styles',
-                'imagemin',
-                'svgmin'
             ]
         }
     });
@@ -351,7 +312,6 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'connect:test',
-            'mocha'
         ]);
     });
 

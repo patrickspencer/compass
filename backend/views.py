@@ -10,7 +10,7 @@ def home(request):
     else:
         other_message = 'go away'
 
-    return render(request, 'student/base.html', {
+    return render(request, 'student/base.jinja', {
         'user': request.user,
         'groups': request.user.groups.get(),
         'other_message': other_message,
