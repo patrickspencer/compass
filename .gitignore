@@ -57,9 +57,9 @@ target/
 db.sqlite3
 
 # Node.js items
-frontend/node_modules
-frontend/.tmp
-frontend/.sass-cache
-frontend/app/bower_components
-frontend/test/bower_components
+assets/node_modules
+assets/.tmp
+assets/.sass-cache
+assets/app/bower_components
+assets/test/bower_components
 

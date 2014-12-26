@@ -183,40 +183,6 @@ module.exports = function (grunt) {
             css: ['<%= config.dist %>/styles/{,*/}*.css']
         },
 
-        htmlmin: {
-            dist: {
-                options: {
-                    collapseBooleanAttributes: true,
-                    collapseWhitespace: true,
-                    removeAttributeQuotes: true,
-                    removeCommentsFromCDATA: true,
-                    removeEmptyAttributes: true,
-                    removeOptionalTags: true,
-                    removeRedundantAttributes: true,
-                    useShortDoctype: true
-                },
-                files: [{
-                    expand: true,
-                    cwd: '<%= config.dist %>',
-                    src: '{,*/}*.html',
-                    dest: '<%= config.dist %>'
-                }]
-            }
-        },
-
-        // By default, your `index.html`'s <!-- Usemin block --> will take care of
-        // minification. These next options are pre-configured if you do not wish
-        // to use the Usemin blocks.
-        // cssmin: {
-        //     dist: {
-        //         files: {
-        //             '<%= config.dist %>/styles/main.css': [
-        //                 '.tmp/styles/{,*/}*.css',
-        //                 '<%= config.app %>/styles/{,*/}*.css'
-        //             ]
-        //         }
-        //     }
-        // },
         uglify: {
             dist: {
                 files: {
@@ -226,9 +192,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-        // concat: {
-        //     dist: {}
-        // },
 
         // Copies remaining files to places other tasks can use
         copy: {
@@ -282,6 +245,8 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-newer');
+
     grunt.registerTask('serve', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:keepalive']);
@@ -316,23 +281,20 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('build', [
-        'clean:dist',
+        'newer:clean:dist',
         'useminPrepare',
         'concurrent:dist',
         'autoprefixer',
         'concat',
         'cssmin',
-        'sass',
-        'uglify',
-        'copy:dist',
+        'newer:sass',
+        'newer:uglify',
+        'newer:copy:dist',
         // 'rev',
-        'usemin',
-        'htmlmin'
+        'usemin'
     ]);
 
     grunt.registerTask('default', [
-        'newer:jshint',
-        'test',
         'build'
     ]);
 };
