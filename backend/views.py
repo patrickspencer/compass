@@ -16,6 +16,12 @@ def home(request):
         'other_message': other_message,
     })
 
+def admin_view(request):
+    return render(request, 'admin/base.jinja', {
+        'user': request.user,
+        'groups': request.user.groups.get(),
+    })
+
 def secret(request):
     return render(request, 'base.html', {
         'message': 'This page is a secret',

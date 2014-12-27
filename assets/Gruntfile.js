@@ -207,7 +207,9 @@ module.exports = function (grunt) {
                         'images/{,*/}*.webp',
                         '{,*/}*.html',
                         'styles/fonts/{,*/}*.*',
-                        'scripts/vendor/{,*/}*.*'
+                        'scripts/{,*/}*.*',
+                        'scripts/admin/{,*/}*.*',
+                        'styles/admin/{,*/}*.*'
                     ]
                 }]
             },
@@ -266,27 +268,10 @@ module.exports = function (grunt) {
         grunt.task.run([target ? ('serve:' + target) : 'serve']);
     });
 
-    grunt.registerTask('test', function (target) {
-        if (target !== 'watch') {
-            grunt.task.run([
-                'clean:server',
-                'concurrent:test',
-                'autoprefixer'
-            ]);
-        }
-
-        grunt.task.run([
-            'connect:test',
-        ]);
-    });
-
     grunt.registerTask('build', [
         'newer:clean:dist',
-        'useminPrepare',
         'concurrent:dist',
         'autoprefixer',
-        'concat',
-        'cssmin',
         'newer:sass',
         'newer:uglify',
         'newer:copy:dist',
@@ -295,11 +280,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('css', [
-        // 'newer:clean:dist',
-        // 'concurrent:dist',
-        // 'autoprefixer',
         'newer:sass',
-        // 'cssmin',
         // 'rev',
     ]);
 

@@ -60,6 +60,6 @@ db.sqlite3
 assets/node_modules
 assets/.tmp
 assets/.sass-cache
-assets/app/bower_components
+assets/bower_components
 assets/test/bower_components
 
