@@ -294,6 +294,15 @@ module.exports = function (grunt) {
         'usemin'
     ]);
 
+    grunt.registerTask('css', [
+        // 'newer:clean:dist',
+        // 'concurrent:dist',
+        // 'autoprefixer',
+        'newer:sass',
+        // 'cssmin',
+        // 'rev',
+    ]);
+
     grunt.registerTask('default', [
         'build'
     ]);
