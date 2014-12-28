@@ -43,7 +43,7 @@ class RequireLoginMiddleware(object):
 
                 if not is_protected and ('instructor' in user_groups):
 
-                    if view_name != 'logout_url':
+                    if view_name == 'logout_url':
                         return None
 
                     return redirect('/admin')

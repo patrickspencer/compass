@@ -9,6 +9,6 @@ urlpatterns = patterns('',
     url(r'^secret/', backend.views.secret),
     url(r'^admin/$', backend.views.admin_view),
     url(r'^login/$', backend.views.login_view, name='login_url'),
-    url(r'^logout/$', backend.views.logout_view, name='logout'),
+    url(r'^logout/$', backend.views.logout_view, name='logout_url'),
     url(r'^djadmin/', include(admin.site.urls)),
 )
