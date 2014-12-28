@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import resolve
 from django.shortcuts import redirect
+from backend.views import login_view
 
 """
 This script from
@@ -13,48 +14,40 @@ http://stackoverflow.com/questions/2164069/best-way-to-make-djangos-login-requir
 class RequireLoginMiddleware(object):
     """
     Middleware component that wraps the login_required decorator around
-    matching URL patterns. To use, add the class to MIDDLEWARE_CLASSES and
-    define LOGIN_REQUIRED_URLS and LOGIN_REQUIRED_URLS_EXCEPTIONS in your
-    settings.py. For example:
-    ------
-    LOGIN_REQUIRED_URLS = (
-        r'/topsecret/(.*)$',
-    )
-    LOGIN_REQUIRED_URLS_EXCEPTIONS = (
-        r'/topsecret/login(.*)$',
-        r'/topsecret/logout(.*)$',
-    )
-    ------
-    LOGIN_REQUIRED_URLS is where you define URL patterns; each pattern must
-    be a valid regex.
-
-    LOGIN_REQUIRED_URLS_EXCEPTIONS is, conversely, where you explicitly
-    define any exceptions (like login and logout URLs).
+    matching URL patterns.
     """
 
+
     def __init__(self):
-        self.required = tuple(re.compile(url) for url in settings.LOGIN_REQUIRED_URLS)
-        self.exceptions = tuple(re.compile(url) for url in settings.LOGIN_REQUIRED_URLS_EXCEPTIONS)
+        self.required = re.compile(r'/admin/(.*)$')
 
     def process_view(self, request, view_func, view_args, view_kwargs):
-        current_url = resolve(request.path_info).url_name
-        # No need to process URLs if user already logged in
-        # if not request.user.is_authenticated():
-        #     return redirect('/login')
 
-        if request.user.is_authenticated():
-            return None
+        # view_name is the url_name of the ResolverMatch. It's the name given
+        # to the url pattern of the current url the page is viewing
+        view_name = resolve(request.path_info).url_name
+        user = request.user
 
-        # An exception match should immediately return None
-        for url in self.exceptions:
-            if url.match(request.path):
-                return None
+        if user is not None:
+            logged_in = user.is_authenticated()
+            user_groups = list(user.groups.values_list('name',flat=True))
 
-        # Requests matching a restricted URL pattern are returned
-        # wrapped with the login_required decorator
-        for url in self.required:
-            if url.match(request.path):
+            if not logged_in and view_name != 'login_url':
                 return login_required(view_func)(request, *view_args, **view_kwargs)
+
+            if logged_in:
+                is_protected = self.required.match(request.path)
+
+                if is_protected and ('instructor' not in user_groups):
+                    return redirect('/')
+
+                if not is_protected and ('instructor' in user_groups):
+
+                    if view_name != 'logout_url':
+                        return None
+
+                    return redirect('/admin')
+                     
 
         # Explicitly return None for all non-matching requests
         return None

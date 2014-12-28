@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'django_jinja',
     'backend.assignments'
 )
@@ -48,7 +49,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'backend.middleware.siteaccess.RequireLoginMiddleware',
+    'backend.middleware.siteaccess.RequireLoginMiddleware',
 )
 
 ROOT_URLCONF = 'backend.urls'
@@ -89,15 +90,7 @@ STATICFILES_DIRS = (
             os.path.join(BASE_DIR, 'assets', 'dist'),
 )
 TEMPLATE_DIRS = (
-            os.path.join(BASE_DIR, 'backend','templates'),
-)
-
-LOGIN_REQUIRED_URLS = (
-    r'/secret/(.*)$',
-)
-LOGIN_REQUIRED_URLS_EXCEPTIONS = (
-    r'/secret/login(.*)$',
-    r'/secret/logout(.*)$',
+            os.path.join(BASE_DIR, 'templates'),
 )
 
 LOGIN_URL = '/login/'
