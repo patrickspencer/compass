@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import resolve
 from django.shortcuts import redirect
-from backend.views import login_view
+from compass.views import login_view
 
 """
 This script from

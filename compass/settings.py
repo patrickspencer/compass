@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = (
+PREREQ_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -37,11 +37,16 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
-    'django_jinja',
-    'backend.assignments'
-)
+]
 
-MIDDLEWARE_CLASSES = (
+PROJECT_APPS = [
+    'compass.apps.staff',
+    'compass.apps.student',
+]
+
+INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
+
+MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -49,12 +54,12 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'backend.middleware.siteaccess.RequireLoginMiddleware',
-)
+    'compass.middleware.siteaccess.RequireLoginMiddleware',
+]
 
-ROOT_URLCONF = 'backend.urls'
+ROOT_URLCONF = 'compass.urls'
 
-WSGI_APPLICATION = 'backend.wsgi.application'
+WSGI_APPLICATION = 'compass.wsgi.application'
 
 
 # Database
@@ -95,9 +100,3 @@ TEMPLATE_DIRS = (
 
 LOGIN_URL = '/login/'
 
-TEMPLATE_LOADERS = (
-            'django_jinja.loaders.FileSystemLoader',
-            'django_jinja.loaders.AppLoader'
-)
-
-DEFAULT_JINJA2_TEMPLATE_EXTENSION = '.jinja'
