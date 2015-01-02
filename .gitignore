@@ -53,8 +53,8 @@ docs/_build/
 # PyBuilder
 target/
 
-# Development databse
-db.sqlite3
+# temporary files
+tmp/
 
 # Node.js items
 assets/node_modules
