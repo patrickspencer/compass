@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from compass.forms.login import LoginForm
+from appcore.forms.login import LoginForm
 
 
 def login_view(request):

@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-import compass.apps.staff.views
+import appstaff.views
 
 
 # These urls are included in compass.urls
@@ -8,7 +8,7 @@ import compass.apps.staff.views
 # at /admin/
 
 urlpatterns = patterns('',
-    url(r'^$', compass.apps.staff.views.admin_view,
+    url(r'^$', appstaff.views.admin_view,
         name='admin_home_url'),
 )
 

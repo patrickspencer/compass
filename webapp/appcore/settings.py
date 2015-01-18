@@ -40,9 +40,9 @@ PREREQ_APPS = [
 ]
 
 PROJECT_APPS = [
-    'compass',
-    'compass.apps.staff',
-    'compass.apps.student',
+    'appcore',
+    'appstaff',
+    'appstudent',
 ]
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
@@ -58,11 +58,11 @@ MIDDLEWARE_CLASSES = [
     # 'compass.middleware.siteaccess.RequireLoginMiddleware',
 ]
 
-ROOT_URLCONF = 'compass.urls'
+ROOT_URLCONF = 'appcore.urls'
 
-WSGI_APPLICATION = 'compass.wsgi.application'
+WSGI_APPLICATION = 'appcore.wsgi.application'
 
-AUTH_PROFILE_MODULE = 'compass.UserProfile'
+AUTH_PROFILE_MODULE = 'appcore.UserProfile'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -92,13 +92,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_URL = '/public/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-            os.path.join(BASE_DIR, 'assets', 'dist'),
+            os.path.join(BASE_DIR, '..', 'static'),
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
 
 TEMPLATE_DIRS = (
             os.path.join(BASE_DIR, 'templates'),
