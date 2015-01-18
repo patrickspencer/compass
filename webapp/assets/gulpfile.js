@@ -9,26 +9,26 @@ var $ = require('gulp-load-plugins')();
 
 gulp.task('copy', function(){
   gulp.src(['app/scripts/*'])
-    .pipe(gulp.dest('../static/scripts/'));
+    .pipe(gulp.dest('dist/scripts/'));
   gulp.src(['app/images/*'])
-    .pipe(gulp.dest('../static/images/'));
+    .pipe(gulp.dest('dist/images/'));
   gulp.src(['app/fonts/*'])
-    .pipe(gulp.dest('../static/fonts/'));
+    .pipe(gulp.dest('dist/fonts/'));
 });
 
 gulp.task('sass', function () {
     gulp.src(['app/styles/**/*.scss'],{base: 'app'})
         .pipe(sass())
         .pipe(minifyCSS())
-        .pipe(gulp.dest('../static/'))
+        .pipe(gulp.dest('dist/'))
         .pipe(rev.manifest())             // applies only changes to the manifest
-        .pipe(gulp.dest('../static/'));
+        .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
 gulp.task('build', ['sass'], function () {
-  return gulp.src('../static/**/*').pipe($.size({title: 'build', gzip: true}));
+  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
 gulp.task('default', ['clean'], function () {
