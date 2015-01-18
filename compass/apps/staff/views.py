@@ -3,8 +3,7 @@ from django.shortcuts import render
 
 
 def admin_view(request):
-    return render(request, 'admin/base.html', {
+    return render(request, 'staff/base.html', {
         'user': request.user,
-        'groups': request.user.groups.get(),
     })
 

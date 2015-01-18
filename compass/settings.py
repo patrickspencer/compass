@@ -40,6 +40,7 @@ PREREQ_APPS = [
 ]
 
 PROJECT_APPS = [
+    'compass',
     'compass.apps.staff',
     'compass.apps.student',
 ]
@@ -54,13 +55,14 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'compass.middleware.siteaccess.RequireLoginMiddleware',
+    # 'compass.middleware.siteaccess.RequireLoginMiddleware',
 ]
 
 ROOT_URLCONF = 'compass.urls'
 
 WSGI_APPLICATION = 'compass.wsgi.application'
 
+AUTH_PROFILE_MODULE = 'compass.UserProfile'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -71,6 +73,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'tmp', 'db.sqlite3'),
     }
 }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -94,9 +97,13 @@ STATIC_URL = '/public/'
 STATICFILES_DIRS = (
             os.path.join(BASE_DIR, 'assets', 'dist'),
 )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 TEMPLATE_DIRS = (
             os.path.join(BASE_DIR, 'templates'),
 )
 
 LOGIN_URL = '/login/'
+
 

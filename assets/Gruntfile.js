@@ -208,8 +208,8 @@ module.exports = function (grunt) {
                         '{,*/}*.html',
                         'styles/fonts/{,*/}*.*',
                         'scripts/{,*/}*.*',
-                        'scripts/admin/{,*/}*.*',
-                        'styles/admin/{,*/}*.*'
+                        'scripts/staff/{,*/}*.*',
+                        'styles/staff/{,*/}*.*'
                     ]
                 }]
             },

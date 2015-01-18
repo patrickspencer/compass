@@ -47,7 +47,7 @@ class RequireLoginMiddleware(object):
                         return None
 
                     return redirect('/admin')
-                     
+
 
         # Explicitly return None for all non-matching requests
         return None
