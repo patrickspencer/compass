@@ -57,10 +57,10 @@ target/
 tmp/
 
 # Node.js items
-assets/node_modules/
-assets/.tmp
-assets/.sass-cache
-assets/bower_components/
-assets/npm-debug.log
-assets/test/bower_components/
+webapp/assets/.tmp
+webapp/assets/.sass-cache
+webapp/assets/bower_components/
+webapp/assets/node_modules/
+webapp/assets/npm-debug.log
+webapp/assets/test/bower_components/
 
