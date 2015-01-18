@@ -1,2 +1,1 @@
 -r base.txt
-django-shortcuts==1.5
