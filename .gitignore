@@ -61,5 +61,6 @@ assets/node_modules/
 assets/.tmp
 assets/.sass-cache
 assets/bower_components/
+assets/npm-debug.log
 assets/test/bower_components/
 
