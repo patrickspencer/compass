@@ -1,0 +1,7 @@
+site_name: My Docs
+
+pages:
+- [index.md, Home]
+- [development.md, Development]
+
+theme: readthedocs

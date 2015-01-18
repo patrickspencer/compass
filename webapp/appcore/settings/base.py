@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-print "base_dir:" + BASE_DIR
 
 
 # Quick-start development settings - unsuitable for production
@@ -21,9 +20,6 @@ print "base_dir:" + BASE_DIR
 SECRET_KEY = 'ca)pz=8)i47*e@e@2#z8wbhrofw39nd^y%xqi+9k9nqa1-)*6@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -31,7 +27,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 PREREQ_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -65,16 +60,6 @@ WSGI_APPLICATION = 'appcore.wsgi.application'
 
 AUTH_PROFILE_MODULE = 'appcore.UserProfile'
 
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'tmp', 'db.sqlite3'),
-    }
-}
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -96,7 +81,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'assets', 'dist'),
+        os.path.join(BASE_DIR, '..', 'assets', 'dist'),
         )
 
 STATICFILES_FINDERS = (
@@ -105,8 +90,8 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-print "STATIC_ROOT:" + STATIC_ROOT
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
+# print "STATIC_ROOT:" + STATIC_ROOT
 
 TEMPLATE_DIRS = (
             os.path.join(BASE_DIR, 'templates'),
