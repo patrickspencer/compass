@@ -7,7 +7,7 @@ from subprocess import call
 ALIASES = {
     # Django
     'c'  : 'collectstatic',
-    's'  : 'runserver',
+    's'  : 'runserver --settings=appcore.settings.development',
     'sd' : 'syncdb',
     'sp' : 'startproject',
     'sa' : 'startapp',

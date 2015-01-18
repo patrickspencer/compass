@@ -94,7 +94,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
 # print "STATIC_ROOT:" + STATIC_ROOT
 
 TEMPLATE_DIRS = (
-            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, '..', 'templates'),
 )
 
 LOGIN_URL = '/login/'

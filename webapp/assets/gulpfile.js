@@ -10,6 +10,10 @@ var $ = require('gulp-load-plugins')();
 gulp.task('copy', function(){
   gulp.src(['app/scripts/*'])
     .pipe(gulp.dest('dist/scripts/'));
+  gulp.src(['bower_components/jquery/dist/jquery.min.js'])
+    .pipe(gulp.dest('dist/scripts/vendor/'));
+  gulp.src(['bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js'])
+    .pipe(gulp.dest('dist/scripts/vendor/'));
   gulp.src(['app/images/*'])
     .pipe(gulp.dest('dist/images/'));
   gulp.src(['app/fonts/*'])

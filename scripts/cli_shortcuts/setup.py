@@ -6,14 +6,13 @@ from setuptools import setup
 readme = open('README.rst').read()
 
 setup(
-    name = 'django-shortcuts',
+    name = 'cli-shortcuts',
     version = '1.5',
     description = "You spend way too much time typing 'python manage.py'",
     long_description = readme,
-    author = "Johannes Gorset",
-    author_email = "jgorset@gmail.com",
-    url = "http://github.com/jgorset/django-shortcuts",
-    py_modules = ['django_shortcuts'],
+    author = "Johannes Gorset, Patrick Spencer",
+    author_email = "jgorset@gmail.com, patrick.spencer@mail.mizzou.edu",
+    py_modules = ['cli_shortcuts'],
     classifiers = [
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
@@ -25,7 +24,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'dj = django_shortcuts:main',
+            'dj = cli_shortcuts:main',
         ]
     },
 )
