@@ -1,9 +1,8 @@
 {
-  "name": "compass-assets",
+  "name": "gulp",
   "private": true,
   "dependencies": {
-    "bootstrap-sass-twbs": "~3.3.1",
-    "jquery": "~1.11.0"
-  },
-  "devDependencies": {}
+    "bootstrap-sass-official": "~3.3.1",
+    "modernizr": "~2.8.1"
+  }
 }

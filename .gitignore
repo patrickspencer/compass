@@ -57,9 +57,9 @@ target/
 tmp/
 
 # Node.js items
-assets/node_modules
+assets/node_modules/
 assets/.tmp
 assets/.sass-cache
-assets/bower_components
-assets/test/bower_components
+assets/bower_components/
+assets/test/bower_components/
 
