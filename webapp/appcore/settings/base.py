@@ -19,10 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'ca)pz=8)i47*e@e@2#z8wbhrofw39nd^y%xqi+9k9nqa1-)*6@'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -32,6 +29,7 @@ PREREQ_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_jinja',
     'widget_tweaks',
 ]
 
@@ -94,9 +92,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
 # print "STATIC_ROOT:" + STATIC_ROOT
 
 TEMPLATE_DIRS = (
-            os.path.join(BASE_DIR, '..', 'templates'),
+    os.path.join(BASE_DIR, '..', 'templates'),
 )
 
 LOGIN_URL = '/login/'
 
+TEMPLATE_LOADERS = (
+    'django_jinja.loaders.FileSystemLoader',
+    'django_jinja.loaders.AppLoader',
+    )
+
+DEFAULT_JINJA2_TEMPLATE_EXTENSION = '.jinja'
 

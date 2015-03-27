@@ -48,7 +48,7 @@ Shortcuts
     'cpw': 'changepassword',
 
     # Migrations
-    'sh'  : 'migrate',
+    'sh' : 'migrate',
     'sm' : 'schemamigration',
 
     # Django Extensions
