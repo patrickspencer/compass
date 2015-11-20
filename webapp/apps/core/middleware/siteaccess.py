@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import resolve
 from django.shortcuts import redirect
-from compass.views import login_view
+from apps.core.views import login_view
 
 """
 This script from
@@ -16,7 +16,6 @@ class RequireLoginMiddleware(object):
     Middleware component that wraps the login_required decorator around
     matching URL patterns.
     """
-
 
     def __init__(self):
         self.required = re.compile(r'/admin/(.*)$')
@@ -35,18 +34,18 @@ class RequireLoginMiddleware(object):
             if not logged_in and view_name != 'login_url':
                 return login_required(view_func)(request, *view_args, **view_kwargs)
 
-            if logged_in:
-                is_protected = self.required.match(request.path)
-
-                if is_protected and ('instructor' not in user_groups):
-                    return redirect('/')
-
-                if not is_protected and ('instructor' in user_groups):
-
-                    if view_name == 'logout_url':
-                        return None
-
-                    return redirect('/admin')
+            # if logged_in:
+            #     is_protected = self.required.match(request.path)
+            #
+            #     if is_protected and ('instructor' not in user_groups):
+            #         return redirect('/')
+            #
+            #     if not is_protected and ('instructor' in user_groups):
+            #
+            #         if view_name == 'logout_url':
+            #             return None
+            #
+            #         return redirect('/admin')
 
 
         # Explicitly return None for all non-matching requests

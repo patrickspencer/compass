@@ -12,7 +12,7 @@ class Assignment(models.Model):
         return self.name
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(User, unique=True)
+    user = models.OneToOneField(User, primary_key=True)
     assignments = models.ManyToManyField(Assignment)
 
     def __unicode__(self):

@@ -2,10 +2,10 @@
 Django settings for compass project.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
+https://docs.djangoproject.com/en/1.8/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
+https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -29,14 +29,12 @@ PREREQ_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_jinja',
-    'widget_tweaks',
 ]
 
 PROJECT_APPS = [
-    'appcore',
-    'appstaff',
-    'appstudent',
+    'apps.core',
+    'apps.staff',
+    'apps.student',
 ]
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
@@ -49,18 +47,14 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'compass.middleware.siteaccess.RequireLoginMiddleware',
+    'apps.core.middleware.siteaccess.RequireLoginMiddleware',
 ]
 
-ROOT_URLCONF = 'appcore.urls'
+ROOT_URLCONF = 'apps.core.urls'
 
-WSGI_APPLICATION = 'appcore.wsgi.application'
+WSGI_APPLICATION = 'apps.core.wsgi.application'
 
-AUTH_PROFILE_MODULE = 'appcore.UserProfile'
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
+AUTH_PROFILE_MODULE = 'apps.core.UserProfile'
 
 LANGUAGE_CODE = 'en-us'
 
@@ -78,9 +72,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, '..', 'assets', 'dist'),
-        )
+# STATICFILES_DIRS = (
+#         os.path.join(BASE_DIR, 'assets', 'dist'),
+#         )
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -88,19 +82,40 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
-# print "STATIC_ROOT:" + STATIC_ROOT
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets', 'dist')
+# print("STATIC_ROOT:" + STATIC_ROOT)
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, '..', 'templates'),
-)
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+    {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        # 'DEBUG': True,
+        'APP_DIRS': True,
+        'OPTIONS': {'environment': 'apps.core.jinja2.environment'},
+    },
+]
+
 
 LOGIN_URL = '/login/'
 
-TEMPLATE_LOADERS = (
-    'django_jinja.loaders.FileSystemLoader',
-    'django_jinja.loaders.AppLoader',
-    )
-
-DEFAULT_JINJA2_TEMPLATE_EXTENSION = '.jinja'
+# TEMPLATE_LOADERS = (
+#     'django_jinja.loaders.FileSystemLoader',
+#     'django_jinja.loaders.AppLoader',
+#     )
+#
+# DEFAULT_JINJA2_TEMPLATE_EXTENSION = '.jinja'
 

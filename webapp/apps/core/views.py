@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from appcore.forms.login import LoginForm
+from apps.core.forms.login import LoginForm
+from django.template.context_processors import csrf
 
 
 def login_view(request):
@@ -19,10 +20,19 @@ def login_view(request):
                 pass
         else:
             # Return an 'invalid login' error message.
-            pass
+            print("The username and password were incorrect.")
+            form = LoginForm({'username': username, 'password': password})
+    else:
+        user = None
+        form = LoginForm()
 
-    form = LoginForm
-    return render(request, 'login.html', {'form': form})
+    c = {}
+    c.update(csrf(request))
+    return render(request, 'login.html',
+        {'form': form,
+         'csrf_token': c,
+         'current_user': user
+          })
 
 def logout_view(request):
     logout(request)
