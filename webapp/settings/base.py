@@ -88,8 +88,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets', 'dist')
 
 TEMPLATES = [
     {
+        'BACKEND': 'apps.core.jinja2.Jinja2Backend.Jinja2Backend',
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        # 'DEBUG': True,
+        'APP_DIRS': True,
+        'OPTIONS': {'environment': 'apps.core.jinja2.environment'},
+    },
+    {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'dj_templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,22 +107,7 @@ TEMPLATES = [
             ],
         },
     },
-    {
-        'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
-        # 'DEBUG': True,
-        'APP_DIRS': True,
-        'OPTIONS': {'environment': 'apps.core.jinja2.environment'},
-    },
 ]
 
 
 LOGIN_URL = '/login/'
-
-# TEMPLATE_LOADERS = (
-#     'django_jinja.loaders.FileSystemLoader',
-#     'django_jinja.loaders.AppLoader',
-#     )
-#
-# DEFAULT_JINJA2_TEMPLATE_EXTENSION = '.jinja'
-
