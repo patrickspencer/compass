@@ -15,8 +15,8 @@ def users_new_view(request):
             username = form.cleaned_data['username']
             email = form.cleaned_data['email']
             if User.objects.filter(email=email).exists():
-                # messages = "User with that email already exists"
-                pass
+                messages.add_message(request, messages.ERROR, 'Username with\
+                    that email already exists')
             else:
                 User.objects.create_user(
                         username = form.cleaned_data['username'],
@@ -26,11 +26,11 @@ def users_new_view(request):
                         first_name = form.cleaned_data['first_name']
                         )
                 # messages = "User created"
+                messages.add_message(request, messages.SUCCESS, 'User create!.')
     else:
         form = NewUserForm()
     messages.add_message(request, messages.INFO, 'This is a message!.')
-    return render(request, 'users/new.html', {
+    return render(request, 'staff/users/new.jinja', {
         'form': form,
-        # 'messages': messages
     })
 
