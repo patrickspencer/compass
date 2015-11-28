@@ -1,13 +1,13 @@
 {% extends 'staff/base.jinja'%}
 
 {% block content %}
-    {% if messages %}
+    {{ messages['messages'] }}
     <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
+        {# {% for message in messages %} #}
+        {# <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> #}
+        {# {% endfor %} #}
     </ul>
-    {% endif %}
+    {# {% endif %} #}
     <form action="/staff/users/new/" method="post">
       <div class="body bg-gray">
         <div class="form-group">
