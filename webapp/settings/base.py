@@ -12,10 +12,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'ca)pz=8)i47*e@e@2#z8wbhrofw39nd^y%xqi+9k9nqa1-)*6@'
 
@@ -68,13 +64,13 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
 
-# STATICFILES_DIRS = (
-#         os.path.join(BASE_DIR, 'assets', 'dist'),
-#         )
+STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'assets', 'dist'),
+        )
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -82,7 +78,9 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets', 'dist')
+# this should be a blank directory where the 'collectstatic' command
+# can relocate static files found in STATICFILES_DIRS
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # print("STATIC_ROOT:" + STATIC_ROOT)
 
 
