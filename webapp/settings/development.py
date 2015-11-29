@@ -18,9 +18,7 @@ DATABASES = {
 }
 
 DEVELOPMENT_APPS = [
-        'django.contrib.admin',
         'debug_toolbar',
-        'django_extensions',
         ]
 
 INSTALLED_APPS += DEVELOPMENT_APPS
