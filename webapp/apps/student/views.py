@@ -7,7 +7,7 @@ def student_home(request):
     logged_in = request.user.is_authenticated()
     user_groups = request.user.groups.values_list('name',flat=True)
     view_name = resolve(request.path_info).url_name
-    return render(request, 'student/base.html', {
+    return render(request, 'student/base.jinja', {
         'user': request.user,
         'current_url': current_url,
         'logged_in': logged_in,
