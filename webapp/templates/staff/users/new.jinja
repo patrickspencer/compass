@@ -1,12 +1,16 @@
 {% extends 'staff/base.jinja'%}
 
 {% block content %}
-    {{ messages['messages'] }}
-    <ul class="messages">
-        {# {% for message in messages %} #}
-        {# <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> #}
-        {# {% endfor %} #}
-    </ul>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+    {# {{ messages['messages'] }} #}
+    {# <ul class="messages"> #}
+    {#     {% for message in messages %} #}
+    {#     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> #}
+    {#     {% endfor %} #}
+    {# </ul> #}
     {# {% endif %} #}
     <form action="/staff/users/new/" method="post">
       <div class="body bg-gray">
@@ -42,4 +46,8 @@
         <button type="submit" class="btn bg-primary">Submit</button>
       </div>
     </form>
+
+        </div><!-- /.col-xs-12 .col-md-8 -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
 {% endblock %}

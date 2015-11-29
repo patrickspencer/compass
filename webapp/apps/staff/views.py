@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 
-def admin_view(request):
-    return render(request, 'staff/base.jinja', {})
+def index_view(request):
+    return render(request, 'staff/users/index.jinja', {})
 
 def users_new_view(request):
     if request.method == 'POST':
