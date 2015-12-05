@@ -1,5 +1,24 @@
 {% extends 'staff/base.jinja'%}
+{% set ctx = request.context %}
 
 {% block content %}
+{% for message in ctx.messages %}
+  {{ message.tags }}
+{% endfor %}
+
   <a href="/staff/users/new/"><i class="fa fa-plus-square"></i></a>
+  <table class="table table-striped">
+      <tr>
+        <th>First name</th>
+        <th>last name</th>
+        <th>Email</th>
+      </tr>
+  {% for user in users %}
+    <tr>
+      <td>{{ user.first_name }}</td>
+      <td>{{ user.last_name }}</td>
+      <td>{{ user.email }}</td>
+    </tr>
+  {% endfor %}
+  </table>
 {% endblock %}
