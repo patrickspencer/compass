@@ -2,9 +2,11 @@
 {% set ctx = request.context %}
 
 {% block content %}
-{% for message in ctx.messages %}
-  {{ message.tags }}
-{% endfor %}
+<ul class="messages">
+  {% for message in ctx.messages %}
+  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+  {% endfor %}
+</ul>
 
   <a href="/staff/users/new/"><i class="fa fa-plus-square"></i></a>
   <table class="table table-striped">
@@ -12,12 +14,14 @@
         <th>First name</th>
         <th>last name</th>
         <th>Email</th>
+        <th></th>
       </tr>
   {% for user in users %}
     <tr>
       <td>{{ user.first_name }}</td>
       <td>{{ user.last_name }}</td>
       <td>{{ user.email }}</td>
+      <td><a href="/staff/users/{{user.id}}/delete">delete</a></td>
     </tr>
   {% endfor %}
   </table>

@@ -35,3 +35,10 @@ def users_new_view(request):
         'form': form,
     })
 
+def users_delete_view(request, user_id):
+    user = User.objects.get(pk=user_id)
+    user.delete()
+    messages.add_message(request, messages.SUCCESS, 'User with name %s %s and \
+            email %s deleted!.' % (user.first_name, user.last_name, user.email))
+    return redirect(reverse('staff:user_index'))
+
