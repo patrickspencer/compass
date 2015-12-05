@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(__file__)),'..'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'ca)pz=8)i47*e@e@2#z8wbhrofw39nd^y%xqi+9k9nqa1-)*6@'
@@ -44,9 +44,10 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'apps.core.middleware.siteaccess.RequireLoginMiddleware',
+    'apps.core.middleware.messages.MessagesCustomMiddleware',
 ]
 
-ROOT_URLCONF = 'apps.core.urls'
+ROOT_URLCONF = 'config.urls'
 
 WSGI_APPLICATION = 'apps.core.wsgi.application'
 
