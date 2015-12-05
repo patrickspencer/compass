@@ -29,10 +29,7 @@ def login_view(request):
     c = {}
     c.update(csrf(request))
     return render(request, 'login.jinja',
-        {'form': form,
-         'csrf_token': c,
-         'current_user': user
-          })
+        {'form': form})
 
 def logout_view(request):
     logout(request)
