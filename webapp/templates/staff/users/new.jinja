@@ -1,9 +1,15 @@
 {% extends 'staff/base.jinja'%}
+{% set ctx = request.context %}
 
 {% block content %}
     <div class="container">
       <div class="row">
         <div class="col-md-12">
+          <ul class="messages">
+            {% for message in ctx.messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+          </ul>
 
     {# {{ messages['messages'] }} #}
     {# <ul class="messages"> #}
