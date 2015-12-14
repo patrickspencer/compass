@@ -7,8 +7,11 @@ import apps.staff.views
 # at /staff/
 
 urlpatterns = [
-    url(r'^users/$', apps.staff.views.index_view, name='users_home'),
-    url(r'^users/new/$', apps.staff.views.users_new_view, name='users_new'),
-    url(r'^users/(?P<user_id>[0-9]+)/delete$', apps.staff.views.users_delete_view, name='users_delete'),
+    url(r'^users/$', apps.staff.views.Index.as_view(), name='users_home'),
+    url(r'^users/new/$', apps.staff.views.Create.as_view(), name='users_new'),
+    url(r'^users/(?P<pk>[0-9]+)/delete$',
+      apps.staff.views.Delete.as_view(), name='users_delete'),
+    url(r'^users/(?P<pk>[0-9]+)/update$',
+      apps.staff.views.Update.as_view(), name='users_update'),
 ]
 

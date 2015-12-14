@@ -1,0 +1,27 @@
+{% extends 'staff/base.jinja'%}
+{% set ctx = request.context %}
+
+{% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="messages">
+            {% for message in ctx.messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+          </ul>
+
+    <form action="" method="post">
+      <div class="body bg-gray">
+        <div class="form-group">
+
+          <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+          <p>Are you sure you want to delete "{{ object }}"?</p>
+        <input type="submit" class="btn bg-primary" value="Confirm" />
+      </div>
+    </form>
+
+        </div><!-- /.col-xs-12 .col-md-8 -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+{% endblock %}

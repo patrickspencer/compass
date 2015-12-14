@@ -7,7 +7,6 @@
   <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
   {% endfor %}
 </ul>
-
   <a href="/staff/users/new/"><i class="fa fa-plus-square"></i></a>
   <table class="table table-striped">
       <tr>
@@ -15,13 +14,19 @@
         <th>last name</th>
         <th>Email</th>
         <th></th>
+        <th></th>
       </tr>
-  {% for user in users %}
+  {% for user in object_list %}
     <tr>
       <td>{{ user.first_name }}</td>
       <td>{{ user.last_name }}</td>
       <td>{{ user.email }}</td>
-      <td><a href="/staff/users/{{user.id}}/delete">delete</a></td>
+      <td>
+      {% if not user.is_superuser %}
+        <a href="{{ url('staff:users_delete', kwargs={'pk': user.id}) }}">delete</a>
+      {% endif %}
+      </td>
+      <td><a href="{{ url('staff:users_update', kwargs={'pk': user.id}) }}">update</a></td>
     </tr>
   {% endfor %}
   </table>

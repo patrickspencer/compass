@@ -1,44 +1,36 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.core.urlresolvers import reverse
-from apps.staff.forms import NewUserForm
+from django.core.urlresolvers import reverse_lazy
+from apps.staff.forms import UserForm
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.conf import settings
+from apps.core.views import LoginRequiredView
+from django.views.generic.list import ListView
+from django.views.generic.edit import UpdateView, CreateView, DeleteView
 
 
-def index_view(request):
-    users = User.objects.all()
-    return render(request, 'staff/users/index.jinja',
-        {'users': users})
+class Index(LoginRequiredView, ListView):
+    model = User
+    template_name = 'staff/users/users_index.jinja'
 
-def users_new_view(request):
-    if request.method == 'POST':
-        form = NewUserForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data['email']
-            if User.objects.filter(email=email).exists():
-                messages.add_message(request, messages.ERROR, 'Username with\
-                    that email already exists')
-            else:
-                User.objects.create_user(
-                        username = form.cleaned_data['username'],
-                        email = email,
-                        password = form.cleaned_data['password'],
-                        last_name = form.cleaned_data['last_name'],
-                        first_name = form.cleaned_data['first_name']
-                        )
-                # messages = "User created"
-                messages.add_message(request, messages.SUCCESS, 'User create!.')
-                return redirect(reverse('staff:users_home'))
-    else:
-        form = NewUserForm()
-    return render(request, 'staff/users/new.jinja', {
-        'form': form,
-    })
+class Create(LoginRequiredView, CreateView):
+    model = User
+    fields = ['username','password', 'email', 'first_name', 'last_name']
+    template_name = 'staff/users/users_new.jinja'
+    success_url = reverse_lazy('staff:users_home')
 
-def users_delete_view(request, user_id):
-    user = User.objects.get(pk=user_id)
-    user.delete()
-    messages.add_message(request, messages.SUCCESS, 'User with name %s %s and \
-            email %s deleted!.' % (user.first_name, user.last_name, user.email))
-    return redirect(reverse('staff:user_index'))
+class Delete(LoginRequiredView, DeleteView):
+    model = User
+    template_name = 'staff/users/users_confirm_delete.jinja'
+    success_url = reverse_lazy('staff:users_home')
+
+class Update(LoginRequiredView, UpdateView):
+    model = User
+    fields = ['username','email', 'first_name', 'last_name']
+    template_name = 'staff/users/users_update.jinja'
+    success_url = reverse_lazy('staff:users_home')
+
+
+
+
 

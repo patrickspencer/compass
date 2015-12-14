@@ -31,8 +31,8 @@ class RequireLoginMiddleware(object):
             logged_in = user.is_authenticated()
             user_groups = list(user.groups.values_list('name',flat=True))
 
-            if not logged_in and view_name != 'login_url':
-                return login_required(view_func)(request, *view_args, **view_kwargs)
+            # if not logged_in and view_name != 'login_url':
+            #     return login_required(view_func)(request, *view_args, **view_kwargs)
 
             # if logged_in:
             #     is_protected = self.required.match(request.path)

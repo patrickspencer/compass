@@ -43,7 +43,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'apps.core.middleware.siteaccess.RequireLoginMiddleware',
+    # 'apps.core.middleware.siteaccess.RequireLoginMiddleware',
     'apps.core.middleware.messages.MessagesCustomMiddleware',
 ]
 
