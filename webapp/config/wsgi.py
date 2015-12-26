@@ -11,4 +11,7 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "apps.core.settings.production")
 
 from django.core.wsgi import get_wsgi_application
+import gae_mini_profiler.profiler
 application = get_wsgi_application()
+# application = gae_mini_profiler.profiler.ProfilerWSGIMiddleware(application)
+
