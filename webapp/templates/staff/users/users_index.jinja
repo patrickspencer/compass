@@ -7,7 +7,7 @@
   <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
   {% endfor %}
 </ul>
-  <a href="/staff/users/new/"><i class="fa fa-plus-square"></i></a>
+  <a href="{{ url('staff:users_create') }}"><i class="fa fa-plus-square"></i></a>
   <table class="table table-striped">
       <tr>
         <th>First name</th>
