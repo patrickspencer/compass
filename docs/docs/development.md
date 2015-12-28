@@ -11,10 +11,14 @@ the development settings as shown below.
 To start a development server run
 
 ```
-python manage.py runserver --settings=appcore.settings.development
+python manage.py runserver
 ```
 
-starting postgres
+To start a production server run
+```
+python manage.py runserver --settings=appcore.settings.production
+```
+To starting postgres run
 ```
 postgres -D /usr/local/pgsql/data >logfile 2>&1 &
 ```
@@ -38,8 +42,17 @@ createdb compass_webapp
 create new role
 ```
 psql  
-=# CREATE ROLE root WITH LOGIN PASSWORD 'password' SUPERUSER;
+=# CREATE ROLE compass_webapp WITH LOGIN PASSWORD 'password';
+=# CREATE ROLE compass_helpers WITH LOGIN PASSWORD 'password';
 =# ALTER DATABASE compass_webapp OWNER TO root;
+```
+Grant all access to usernames from [stackexchange](http://dba.stackexchange.com/questions/33943/granting-access-to-all-tables-for-a-user):
+```
+REVOKE CONNECT ON DATABASE your_database FROM PUBLIC;
+
+GRANT CONNECT
+ON DATABASE compass_webapp_dev
+TO compass_webapp, compass_helpers;
 ```
 Check database has been created with
 ```
