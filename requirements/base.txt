@@ -1,7 +1,7 @@
 # install with: `pip install -r requirements.txt`
 
 # Infrastructure
-Django == 1.8.7
+Django == 1.9
 psycopg2 == 2.6.1
 jinja2 == 2.8
 bcrypt==2.0
