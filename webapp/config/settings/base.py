@@ -49,9 +49,7 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'config.urls'
 
-WSGI_APPLICATION = 'apps.config.wsgi.application'
-
-AUTH_PROFILE_MODULE = 'apps.core.UserProfile'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 LANGUAGE_CODE = 'en-us'
 
