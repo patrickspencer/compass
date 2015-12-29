@@ -1,6 +1,28 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.contrib.auth.models import AbstractUser
+
+
+class User(AbstractUser):
+    class Meta:
+        db_table = 'users'
+
+class Problem(models.Model):
+    value = models.TextField()
+
+    class Meta:
+        db_table = 'problems'
+
+class ProblemMapping(models.Model):
+    user_id = models.ForeignKey(User)
+    problem_id = models.ForeignKey(Assignment)
+    seed = models.PositiveSmallIntegerField()
+    # assignment_id = models.ForeignKey(Assignment)
+    # assignment_order = models.ForeignKey(Assignment)
+
+    class Meta:
+        db_table = 'problem_mappings'
 
 
 class Assignment(models.Model):
@@ -8,20 +30,9 @@ class Assignment(models.Model):
     start_date = models.DateTimeField()
     due_date = models.DateTimeField(null=True, blank=True)
 
+    class Meta:
+        db_table = 'assignments'
+
     def __unicode__(self):
         return self.name
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, primary_key=True)
-    assignments = models.ManyToManyField(Assignment)
-
-    def __unicode__(self):
-        return u'Profile of user: %s' % self.user.username
-
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-       profile, created = UserProfile.objects.get_or_create(user=instance)
-
-post_save.connect(create_user_profile, sender=User)
-
 
