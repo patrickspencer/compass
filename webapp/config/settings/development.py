@@ -6,8 +6,6 @@ DEBUG = True
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, '..', 'tmp', 'db.sqlite3'),
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'compass_webapp_dev',
         'USER': 'compass_webapp',
