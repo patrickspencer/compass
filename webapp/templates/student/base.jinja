@@ -11,13 +11,6 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-            Welcome {{ request.user }}<br>
-            Current view name: {{ current_url }}<br>
-            Is logged in? {{ logged_in }}<br>
-            User group?
-            {{user_groups}}
-            <br>
-            View name type? {{ view_name_type }}<br>
           {% block content %}{% endblock %}
         </div><!-- /.col-xs-12 .col-md-8 -->
       </div><!-- /.row -->

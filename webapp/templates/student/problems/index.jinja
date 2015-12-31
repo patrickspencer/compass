@@ -1,0 +1,16 @@
+{% extends 'student/base.jinja'%}
+
+{% block content %}
+  <table class="table table-striped">
+      <tr>
+        <th>Id</th>
+        <th>Value</th>
+      </tr>
+    {% for problem in problems %}
+    <tr>
+      <td>{{ problem.id }}</td>
+      <td><a href="{{ url('student:problems_show', kwargs={'problem_id': problem.id}) }}">{{ problem.value }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

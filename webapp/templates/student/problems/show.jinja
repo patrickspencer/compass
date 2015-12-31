@@ -1,0 +1,28 @@
+{% extends 'student/base.jinja'%}
+{% set ctx = request.context %}
+
+{% block content %}
+  <ul>
+    <li>problem value: {{ problem.value }}</li>
+  </ul>
+  <ul class="messages">
+    {% for message in ctx.messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+
+  <form action="/student/answers/update/" method="post">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    <div class="body bg-gray">
+      <div class="form-group">
+        {{ form.value.errors -}}
+        {{ form.value.label_tag() }}
+        {{ form.value }}
+      </div>
+      <div class="footer">
+        <input type="submit" class="btn bg-primary">
+      </div>
+    </div>
+  </form>
+
+{% endblock %}
