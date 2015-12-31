@@ -64,3 +64,14 @@ Check user has been created with
 psql  
 =# \du
 ```
+
+Connect to postgres after install on Ubuntu
+from [Ubuntu postgres page](https://help.ubuntu.com/community/PostgreSQL)
+```
+sudo -u postgres psql postgres
+```
+
+run ansible
+```
+ansible-playbook site.yml
+```
