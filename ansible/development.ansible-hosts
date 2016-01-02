@@ -1,0 +1,12 @@
+# This is the development host file for the Compass ansible setup
+# Rename this file to 'hosts' and move it to /etc/ansible/
+
+# All actions will be done locally instead of through ssh
+[all:vars]
+env=development
+
+[webservers]
+localhost              ansible_connection=local
+
+[dbservers]
+localhost              ansible_connection=local

@@ -1,0 +1,15 @@
+- name: Creates directory
+  file: path="{{ project_path }}" state=directory
+
+- name: Setup the Git repo
+  git: repo={{ git_repo }}
+       version="{{ git_branch }}"
+       dest={{ project_path }}
+       accept_hostkey=yes
+  tags: git
+
+- name: Delete all .pyc files
+  command: find . -name '*.pyc' -delete
+  args:
+    chdir: "{{ project_path }}"
+  tags: git

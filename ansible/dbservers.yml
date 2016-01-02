@@ -1,0 +1,16 @@
+---
+
+- name: Provision a {{ project_name }} db server
+  hosts: dbservers
+  sudo: yes
+  sudo_user: root
+  remote_user: root
+  vars:
+    - update_apt_cache: yes
+  vars_files:
+    - group_vars/base.yml
+    - group_vars/{{ env }}.yml
+
+  roles:
+    - base
+    - db
