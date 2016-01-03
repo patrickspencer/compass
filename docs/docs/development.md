@@ -75,3 +75,10 @@ run ansible
 ```
 ansible-playbook site.yml
 ```
+
+Build docker image from Dockerfile:
+cd into directory with docker file and run:
+```
+docker build -t compass_webapp .
+```
+
