@@ -3,6 +3,7 @@
 git_repo: https://github.com/patrickspencer/compass
 
 project_name: compass
+application_name: compass
 db_user: "{{project_name}}_webapp"
 
 sys_user: "{{project_name}}_webapp"

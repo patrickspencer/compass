@@ -10,7 +10,7 @@ db_name: compass_webapp
 db_password: password
 
 # Application settings.
-django_settings_file: compass.settings.development
+django_settings_file: config.settings.development
 django_secret_key: "3ys4b!f@xpk43hkq4-)@52iwyev88qj(==hvz=n_2n&9%k7^+w"
 
 run_django_db_migrations: yes
