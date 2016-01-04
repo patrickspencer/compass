@@ -1,0 +1,9 @@
+- name: Create the Gunicorn start script
+  template: src=gunicorn_start.jinja
+            dest={{ virtualenv_path }}/bin/gunicorn_start
+            backup=yes
+
+- name: Create set_env_vars.sh script to run after gunicorn starts
+  template: src=set_env_vars.jinja
+            dest={{ virtualenv_path }}/bin/set_env_vars.sh
+            backup=yes
