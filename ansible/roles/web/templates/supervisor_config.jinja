@@ -1,6 +1,6 @@
 [program:{{ application_name }}]
+user = root
 command = {{ virtualenv_path }}/bin/gunicorn_start
-user = {{ gunicorn_user }}
 autostart=true
 autorestart=true
 startretries=3
