@@ -1,9 +1,9 @@
 ---
 
 - name: Provision a {{ project_name }} db server
+  become: yes
+  become_user: root
   hosts: dbservers
-  sudo: yes
-  sudo_user: root
   remote_user: root
   vars:
     - update_apt_cache: yes

@@ -6,11 +6,11 @@
             backup=yes
 
 - name: Re-read the Supervisor config files
-  sudo: yes
-  sudo_user: root
+  become: yes
+  become_user: root
   supervisorctl: name={{ application_name }} state=present
 
 - name: Restart Supervisor
-  sudo: yes
-  sudo_user: root
+  become: yes
+  become_user: root
   supervisorctl: name={{ application_name }} state=restarted

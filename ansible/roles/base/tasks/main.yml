@@ -1,6 +1,6 @@
 - name: Install base packages
-  sudo: yes
-  sudo_user: root
+  become: yes
+  become_user: root
   apt: name={{ item }} update_cache={{ update_apt_cache }} force=yes state=installed
   with_items:
     - build-essential
