@@ -5,6 +5,11 @@
             dest=/etc/supervisor/conf.d/{{ application_name }}.conf
             backup=yes
 
+- name: Start supervisor
+  become: yes
+  become_user: root
+  service: name=supervisor state=started
+
 - name: Re-read the Supervisor config files
   become: yes
   become_user: root
