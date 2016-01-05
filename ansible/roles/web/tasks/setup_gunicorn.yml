@@ -1,7 +1,13 @@
 - name: Create the Gunicorn start script
   template: src=gunicorn_start.jinja
             dest={{ virtualenv_path }}/bin/gunicorn_start
+            owner={{ gunicorn_user }}
+            group={{ gunicorn_group }}
+            mode=0755
             backup=yes
+
+- name: Create gunicorn logs directory
+  action: file path={{ virtualenv_path }}/logs state=directory mode=0755
 
 - name: Create set_env_vars.sh script to run after gunicorn starts
   template: src=set_env_vars.jinja
