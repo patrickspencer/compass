@@ -3,11 +3,12 @@
 # Application settings.
 virtualenv_path: "/virtualenv/{{ application_name }}"
 project_dir: "/var/{{ project_name }}"
-log_dir: "{{ project_dir }}/logs"
+log_dir: "{{ project_dir }}/logs/"
 gunicorn_log_file: "{{ log_dir }}/gunicorn/gunicorn_supervisor.log"
-source_dir: "{{ project_dir }}/source_repo"
-webapp_dir: "{{ source_dir }}/webapp"
-static_dir: "{{ webapp_dir }}/static"
+source_dir: "{{ project_dir }}/source_repo/"
+webapp_dir: "{{ source_dir }}/webapp/"
+# For nginx it's important 'static_dir' has a forward slash on the end
+static_dir: "{{ webapp_dir }}/static/"
 requirements_file: "{{ source_dir }}/requirements/development.txt"
 
 # Gunicorn settings
