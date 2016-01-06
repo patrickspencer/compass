@@ -1,0 +1,38 @@
+[
+{
+    "model": "core.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$24000$0GhZ3XhlBQMd$2Q4LE2doIgx/fV6bYD40FS3x7RvfGkSMiol3fEn/T74=",
+        "last_login": null,
+        "is_superuser": true,
+        "username": "leuler",
+        "first_name": "Leonard",
+        "last_name": "Euler",
+        "email": "leuler@stpetersburg.edu",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2016-01-06T08:38:42.907Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "core.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$24000$28Nzwi8ZF4Ig$QkaFdZ+8ud89B1GLVgBNX3rfFOuQJmvKrdAEfrE558g=",
+        "last_login": "2016-01-06T08:00:00Z",
+        "is_superuser": false,
+        "username": "jdoe",
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "jdoe@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2016-01-06T08:00:00Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
