@@ -2,10 +2,12 @@
 
 # Application settings.
 virtualenv_path: "/virtualenv/{{ application_name }}"
-project_path: "/var/{{ project_name }}"
-application_log_dir: "{{ virtualenv_path }}/logs"
-application_log_file: "{{ application_log_dir }}/gunicorn_supervisor.log"
-requirements_file: "{{ project_path }}/requirements/development.txt"
+project_dir: "/var/{{ project_name }}"
+log_dir: "{{ project_dir }}/logs"
+gunicorn_log_file: "{{ log_dir }}/gunicorn/gunicorn_supervisor.log"
+webapp_dir: "{{ project_dir }}/webapp"
+source_dir: "{{ project_dir }}/source_repo"
+requirements_file: "{{ source_dir }}/requirements/development.txt"
 
 # Gunicorn settings
 gunicorn_user: "{{ application_name  }}"
@@ -15,10 +17,10 @@ gunicorn_group: webapps
 # Nginx settings
 nginx_http_port: 80
 nginx_https_port: 443
-nginx_access_log_file: "{{ application_log_dir  }}/nginx_access.log"
-nginx_error_log_file: "{{ application_log_dir  }}/nginx_error.log"
-nginx_static_dir: "{{ virtualenv_path  }}/static/"
-nginx_media_dir: "{{ virtualenv_path  }}/media/"
+nginx_access_log_file: "{{ log_dir  }}/nginx/nginx_access.log"
+nginx_error_log_file: "{{ log_dir  }}/nginx/nginx_error.log"
+nginx_static_dir: "{{ webapp_dir  }}/static/"
+nginx_media_dir: "{{ webapp_dir  }}/media/"
 
 # Django Environment variables
 django_environment:

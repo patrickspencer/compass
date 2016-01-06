@@ -26,3 +26,4 @@ nginx_server_name: 0.0.0.0
 
 run_django_db_migrations: yes
 run_django_collectstatic: yes
+run_django_loaddata: yes

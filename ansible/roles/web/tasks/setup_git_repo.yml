@@ -1,15 +1,21 @@
 - name: Creates directory
-  file: path="{{ project_path }}" state=directory
+  file: path="{{ project_dir }}" state=directory
 
 - name: Setup the Git repo
   git: repo={{ git_repo }}
        version="{{ git_branch }}"
-       dest={{ project_path }}
+       dest="{{ source_dir }}"
        accept_hostkey=yes
   tags: git
+
+- name: Ensure that the application site is enabled
+  action: file src="{{ source_dir }}/webapp"
+          dest="{{ project_dir }}/webapp"
+          state=link
 
 - name: Delete all .pyc files
   command: find . -name '*.pyc' -delete
   args:
-    chdir: "{{ project_path }}"
+    chdir: "{{ webapp_dir }}"
   tags: git
+

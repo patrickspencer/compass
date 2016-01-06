@@ -1,0 +1,12 @@
+- name: Create project dir
+  action: file path={{ project_dir }} state=directory mode=0755
+
+- name: Create general logs directory
+  action: file path={{ log_dir }} state=directory mode=0755
+
+- name: Create gunicorn logs directory
+  action: file path={{ log_dir }}/gunicorn state=directory mode=0755
+
+- name: Create nginx logs directory
+  action: file path={{ log_dir }}/nginx state=directory mode=0755
+

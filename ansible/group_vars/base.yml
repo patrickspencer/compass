@@ -5,8 +5,4 @@ git_repo: https://github.com/patrickspencer/compass
 project_name: compass
 application_name: compass
 db_user: "{{ project_name }}_webapp"
-webapp_path: "/var/{{ project_name }}/webapp"
-
-sys_user: "{{ project_name }}_webapp"
-sys_group: "{{ project_name }}_webapp"
 
