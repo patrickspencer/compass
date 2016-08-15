@@ -11,15 +11,11 @@ apt-get install ansible
 
 Make folders:
 ```
-mkdir /var/compass 
-mkdir /var/compass/ansible 
+mkdir /var/compass
+mkdir /var/compass/ansible
 ```
 
 For development setup do the following:
 ```
-cd /var/compass/ansible/development /etc/ansible/hosts
+cp /var/compass/ansible/development.ansible-hosts /etc/ansible/hosts
 ```
-
-
-
-

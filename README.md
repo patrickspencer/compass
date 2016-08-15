@@ -62,7 +62,7 @@ requirements/development.txt`
 Then run 
 
 ```
-cd webapp  
+cd webapp
 python manage.py migrate --settings=appcore.settings.{ENV}
 python manage.py collectstatic --settings=appcore.settings.{ENV}
 ```

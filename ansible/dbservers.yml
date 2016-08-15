@@ -1,10 +1,10 @@
 ---
 
 - name: Provision a {{ project_name }} db server
-  become: yes
-  become_user: root
+  # become: yes
+  # become_user: root
   hosts: dbservers
-  remote_user: root
+  # remote_user: root
   vars:
     - update_apt_cache: yes
   vars_files:
@@ -12,5 +12,4 @@
     - group_vars/{{ env }}.yml
 
   roles:
-    - base
     - db

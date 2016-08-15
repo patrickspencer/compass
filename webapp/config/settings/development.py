@@ -7,7 +7,7 @@ DEBUG = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'compass_webapp',
+        'NAME': 'compass_webapp_db',
         'USER': 'compass_webapp',
         'PASSWORD': 'password',
         'HOST': 'localhost',

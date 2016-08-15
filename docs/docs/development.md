@@ -18,6 +18,15 @@ To start a production server run
 ```
 python manage.py runserver --settings=appcore.settings.production
 ```
+
+## Postgres
+
+Install all system dependencies by running `bash scripts/install_dependencies`. These
+dependencies are for Debian\Ubuntu based systems.
+
+Install pip dependencies by running `pip3 install -r
+requirements/development.txt`.
+
 To starting postgres run
 ```
 postgres -D /usr/local/pgsql/data >logfile 2>&1 &
@@ -35,30 +44,39 @@ You should see something like this:
 ```
 /Library/PostgreSQL/9.4/bin/postgres -D /Library/PostgreSQL/9.4/data
 ```
+or
+```
+postgres  8549  0.0  0.3 274196 24284 ?        S    22:26   0:00 /usr/lib/postgresql/9.5/bin/postgres -D /var/lib/postgresql/9.5/main -c config_file=/etc/postgresql/9.5/main/postgresql.conf
+```
+
 Create database
 ```
-createdb compass_webapp
+createdb compass_webapp_db
 ```
+
 create new role
 ```
-psql  
+psql
 =# CREATE ROLE compass_webapp WITH LOGIN PASSWORD 'password';
 =# CREATE ROLE compass_helpers WITH LOGIN PASSWORD 'password';
 =# ALTER DATABASE compass_webapp OWNER TO root;
 ```
+
 Grant all access to usernames from [stackexchange](http://dba.stackexchange.com/questions/33943/granting-access-to-all-tables-for-a-user):
 ```
 REVOKE CONNECT ON DATABASE your_database FROM PUBLIC;
 
 GRANT CONNECT
-ON DATABASE compass_webapp_dev
+ON DATABASE compass_webapp_db
 TO compass_webapp, compass_helpers;
 ```
+
 Check database has been created with
 ```
 psql  
 =# \list
 ```
+
 Check user has been created with 
 ```
 psql  
