@@ -6,8 +6,7 @@ The app is laid out like this:
 
 - Backend: Django
 - Front end: sass, js
-- Database: sqlite3 (Postgresql in the future)
-- Caching: none (Redis or Memcache in the future)
+- Database: Postgresql
 
 Folder structure
 
@@ -29,7 +28,6 @@ Folder structure
     ├── tests/
     └── tmp/
 ```
-
 
 ```
   deploy/
@@ -60,13 +58,11 @@ environment. For example, if you are developing run `pip install -r
 requirements/development.txt`
 
 Then run 
-
 ```
 cd webapp
-python manage.py migrate --settings=appcore.settings.{ENV}
-python manage.py collectstatic --settings=appcore.settings.{ENV}
+python manage.py migrate --settings=config.settings.{ENV}
+python manage.py collectstatic --settings=config.settings.{ENV}
 ```
 
 Finally, to run the server run
-
 `python manage.py runserver --settings=appcore.settings.{ENV}`
