@@ -31,7 +31,7 @@ class ProblemMapping(models.Model):
     user = models.ForeignKey(User)
     problem = models.ForeignKey(Problem)
     seed = models.PositiveSmallIntegerField()
-    # assignment_id = models.ForeignKey(Assignment)
+    assignment_id = models.ForeignKey(Assignment, null=True)
     # assignment_order = models.ForeignKey(Assignment)
 
     class Meta:
@@ -40,7 +40,7 @@ class ProblemMapping(models.Model):
 class Answer(models.Model):
     value = models.TextField()
     user = models.ForeignKey(User)
-    problem = models.ForeignKey(Problem)
+    problem = models.ForeignKey(ProblemMapping)
 
     class Meta:
         db_table = 'answers'

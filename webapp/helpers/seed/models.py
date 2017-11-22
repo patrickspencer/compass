@@ -29,7 +29,7 @@ class Problem(Base):
     value = Column(String)
 
     def __repr__(self):
-       return "<User(id='%d')>" % (self.id)
+       return "<Problem(id='{}', value='{}')>".format(self.id, self.value)
 
 class ProblemMapping(Base):
     __tablename__ = 'problem_mappings'
@@ -40,4 +40,4 @@ class ProblemMapping(Base):
     problem_id = Column(Integer, ForeignKey('problems.id'))
 
     def __repr__(self):
-       return "<User(user_id='%d', problem_id='%d')>" % (self.user_id, self.problem_id)
+       return "<ProblemMapping(seed='{}', user_id='{}', problem_id='{}')>".format(self.seed, self.user_id, self.problem_id)
