@@ -1,6 +1,6 @@
 -r base.txt
 
-django-debug-toolbar==1.4
+django-debug-toolbar==1.5
 
 # sqlalchemy is used to seed data into database for development. There is
 # probably a way to do it with django but using a third party sql library is
