@@ -7,11 +7,9 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic import View
 
-
 @method_decorator(login_required, name='dispatch')
 class LoginRequiredView(View):
     pass
-
 
 class Login(View):
     def post(self, request):
@@ -36,7 +34,6 @@ class Login(View):
         user = None
         form = LoginForm()
         return render(request, 'login.jinja', {'form': form})
-
 
 class Logout(View):
     def get(self, request):

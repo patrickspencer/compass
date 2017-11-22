@@ -29,7 +29,7 @@ class RequireLoginMiddleware(object):
 
         if user is not None:
             logged_in = user.is_authenticated()
-            user_groups = list(user.groups.values_list('name',flat=True))
+            user_groups = list(user.groups.values_list('name', flat=True))
 
             # if not logged_in and view_name != 'login_url':
             #     return login_required(view_func)(request, *view_args, **view_kwargs)

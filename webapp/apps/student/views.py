@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse, resolve, reverse_lazy
-from apps.core.models import ProblemMapping
+from apps.core.models import ProblemMapping, Problem
 from apps.core.views import LoginRequiredView
 from django.views.generic.edit import UpdateView
 from apps.core.models import Answer
@@ -10,15 +10,14 @@ from django.contrib import messages
 
 class Update(LoginRequiredView, UpdateView):
     model = Answer
-    fields = ['value','email', 'first_name', 'last_name']
+    fields = ['value', 'email', 'first_name', 'last_name']
     template_name = 'staff/users/update.jinja'
     success_url = reverse_lazy('student:problems_show')
 
 class ProblemsIndex(LoginRequiredView):
     def get(self, request):
-        problems = request.user.problems.all()
         return render(request, 'student/problems/index.jinja', {
-            'problems': problems
+            'problems': Problem.objects.all()
         })
 
 class ProblemsShow(LoginRequiredView):
