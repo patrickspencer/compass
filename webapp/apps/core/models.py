@@ -10,12 +10,6 @@ class Problem(models.Model):
     class Meta:
         db_table = 'problems'
 
-class User(AbstractUser):
-    problems = models.ManyToManyField(Problem, through='ProblemMapping')
-
-    class Meta:
-        db_table = 'users'
-
 class Assignment(models.Model):
     name = models.CharField(max_length=200)
     start_date = models.DateTimeField()
@@ -27,11 +21,26 @@ class Assignment(models.Model):
     def __unicode__(self):
         return self.name
 
+class User(AbstractUser):
+    problems = models.ManyToManyField(Problem, through='ProblemMapping')
+    assignments = models.ManyToManyField(Assignment, through='AssignmentMapping')
+
+    class Meta:
+        db_table = 'users'
+
+
+class AssignmentMapping(models.Model):
+    user = models.ForeignKey(User)
+    assignment = models.ForeignKey(Assignment)
+
+    class Meta:
+        db_table = 'assignment_mappings'
+
 class ProblemMapping(models.Model):
     user = models.ForeignKey(User)
     problem = models.ForeignKey(Problem)
     seed = models.PositiveSmallIntegerField()
-    assignment_id = models.ForeignKey(Assignment, null=True)
+    assignment_mapping_id = models.ForeignKey(AssignmentMapping, null=True)
     # assignment_order = models.ForeignKey(Assignment)
 
     class Meta:
