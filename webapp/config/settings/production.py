@@ -14,4 +14,3 @@ DATABASES = {
 }
 
 SECRET_KEY = 'seekrt'
-
