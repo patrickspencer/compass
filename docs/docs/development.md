@@ -1,13 +1,5 @@
 # Setting up development environment
 
-To install command line tools go to the scripts/cli_shortcuts folder
-and type `python setup.py develop`
-
-This install a command line program called 'dj' (short for django because these
-started off as django shortcuts) that can bootstrap commands for Django and the
-whole program in general. For example `dj s` loads the development server with
-the development settings as shown below.
-
 To start a development server run
 
 ```
@@ -18,6 +10,8 @@ To start a production server run
 ```
 python manage.py runserver --settings=appcore.settings.production
 ```
+
+## Initial Setup
 
 ## Postgres
 
@@ -94,9 +88,9 @@ run ansible
 ansible-playbook site.yml
 ```
 
-Build docker image from Dockerfile:
-cd into directory with docker file and run:
-```
-docker build -t compass_webapp .
-```
+### Load initial users
 
+```
+cd webapp
+python3 manage.py loaddate helpers/initial_fixtures.json
+```
