@@ -1,0 +1,7 @@
+{
+    "db": [
+        "name": "compass_dev_db",
+        "user": "compass_webapp",
+        "password": "password"
+    ]
+}
