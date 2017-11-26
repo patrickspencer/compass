@@ -8,3 +8,4 @@ django-debug-toolbar==1.5
 # user2, etc...
 
 sqlalchemy==1.0.11
+sphinx==1.6.5
