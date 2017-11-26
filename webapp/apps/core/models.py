@@ -30,7 +30,7 @@ class User(AbstractUser):
 
 
 class AssignmentMapping(models.Model):
-    user = models.ForeignKey(User)
+    user_id = models.ForeignKey(User)
     assignment = models.ForeignKey(Assignment)
 
     class Meta:
@@ -38,7 +38,7 @@ class AssignmentMapping(models.Model):
 
 class ProblemMapping(models.Model):
     user = models.ForeignKey(User)
-    problem = models.ForeignKey(Problem)
+    problem_id = models.ForeignKey(Problem)
     seed = models.PositiveSmallIntegerField()
     assignment_mapping_id = models.ForeignKey(AssignmentMapping, null=True)
     # assignment_order = models.ForeignKey(Assignment)
@@ -48,8 +48,8 @@ class ProblemMapping(models.Model):
 
 class Answer(models.Model):
     value = models.TextField()
-    user = models.ForeignKey(User)
-    problem = models.ForeignKey(ProblemMapping)
+    user_id = models.ForeignKey(User)
+    problem_mapping_id = models.ForeignKey(ProblemMapping)
 
     class Meta:
         db_table = 'answers'
