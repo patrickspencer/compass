@@ -34,10 +34,10 @@ class Problem(Base):
 class ProblemMapping(Base):
     __tablename__ = 'problem_mappings'
 
-    id         = Column(Integer, primary_key=True)
-    seed       = Column(Integer)
-    user_id    = Column(Integer, ForeignKey('users.id'))
-    problem_id = Column(Integer, ForeignKey('problems.id'))
+    id      = Column(Integer, primary_key=True)
+    seed    = Column(Integer)
+    user    = Column(Integer, ForeignKey('users.id'))
+    problem = Column(Integer, ForeignKey('problems.id'))
 
     def __repr__(self):
        return "<ProblemMapping(seed='{}', user_id='{}', problem_id='{}')>".format(self.seed, self.user_id, self.problem_id)
