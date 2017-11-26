@@ -41,3 +41,14 @@ class ProblemMapping(Base):
 
     def __repr__(self):
        return "<ProblemMapping(seed='{}', user_id='{}', problem_id='{}')>".format(self.seed, self.user_id, self.problem_id)
+
+class Answer(Base):
+    __tablename__ = 'answers'
+
+    id              = Column(Integer, primary_key=True)
+    value           = Column(String)
+    user            = Column(Integer, ForeignKey('users.id'))
+    problem_mapping = Column(Integer, ForeignKey('problem_mappings.id'))
+
+    def __repr__(self):
+       return "<Answer(value='{}', user_id='{}', problem_mapping='{}')>".format(self.value, self.user_id, self.problem_mapping_id)
