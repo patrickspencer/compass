@@ -34,10 +34,10 @@ class Problem(Base):
 class ProblemMapping(Base):
     __tablename__ = 'problem_mappings'
 
-    id      = Column(Integer, primary_key=True)
-    seed    = Column(Integer)
-    user    = Column(Integer, ForeignKey('users.id'))
-    problem = Column(Integer, ForeignKey('problems.id'))
+    id         = Column(Integer, primary_key=True)
+    seed       = Column(Integer)
+    user_id    = Column(Integer, ForeignKey('users.id'))
+    problem_id = Column(Integer, ForeignKey('problems.id'))
 
     def __repr__(self):
        return "<ProblemMapping(seed='{}', user_id='{}', problem_id='{}')>".format(self.seed, self.user_id, self.problem_id)
@@ -45,10 +45,10 @@ class ProblemMapping(Base):
 class Answer(Base):
     __tablename__ = 'answers'
 
-    id              = Column(Integer, primary_key=True)
-    value           = Column(String)
-    user            = Column(Integer, ForeignKey('users.id'))
-    problem_mapping = Column(Integer, ForeignKey('problem_mappings.id'))
+    id                 = Column(Integer, primary_key=True)
+    value              = Column(String)
+    user_id            = Column(Integer, ForeignKey('users.id'))
+    problem_mapping_id = Column(Integer, ForeignKey('problem_mappings.id'))
 
     def __repr__(self):
        return "<Answer(value='{}', user_id='{}', problem_mapping='{}')>".format(self.value, self.user_id, self.problem_mapping_id)
