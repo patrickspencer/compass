@@ -5,11 +5,17 @@
       <tr>
         <th>Id</th>
         <th>Value</th>
+        <th>Problem Seed</th>
       </tr>
-    {% for problem in problems %}
+    {% for problem_mapping in problem_mappings %}
     <tr>
-      <td>{{ problem.id }}</td>
-      <td><a href="{{ url('student:problems_show', kwargs={'problem_id': problem.id}) }}">{{ problem.value }}</td>
+      <td>{{ problem_mapping.problem.id }}</td>
+      <td>
+          <a href="{{ url('student:problems_show', kwargs={'problem_id': problem_mapping.problem.id}) }}">
+	      {{ problem_mapping.problem.value }}
+	  </a>
+      </td>
+      <td>{{ problem_mapping.seed }}</td>
     </tr>
     {% endfor %}
   </table>

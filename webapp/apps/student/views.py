@@ -17,26 +17,26 @@ class Update(LoginRequiredView, UpdateView):
 class ProblemsIndex(LoginRequiredView):
     def get(self, request):
         return render(request, 'student/problems/index.jinja', {
-            'problems': Problem.objects.all()
+            'problem_mappings': ProblemMapping.objects.filter(user_id = request.user.id),
         })
 
 class ProblemsShow(LoginRequiredView):
     def get(self, request, problem_id):
-        form = AnswerForm()
-        problem = request.user.problems.get(pk=problem_id)
-        request.session['problem_id'] = problem_id
+        problem_mapping = ProblemMapping.objects.filter(
+                              user_id = request.user.id,
+                              problem_id=problem_id)[0]
         return render(request, 'student/problems/show.jinja', {
-            'problem': problem,
-            'form': form
+            'problem_id': problem_id,
+            'problem': problem_mapping.problem,
+            'form': AnswerForm(),
         })
 
 class AnswerUpdate(LoginRequiredView):
     def post(self, request):
-        problem_id = request.session['problem_id']
         form = AnswerForm(request.POST)
         if form.is_valid():
             answer = Answer(value=form.cleaned_data['value'], user_id=request.user.id,
-                problem_id=request.session['problem_id'])
+                problem_mapping=request.session['problem_id'])
             answer.save()
             return redirect('student:problems_show', problem_id=problem_id)
         else:
