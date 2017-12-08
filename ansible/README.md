@@ -16,6 +16,8 @@ mkdir /var/compass/ansible
 ```
 
 For development setup do the following:
+
 ```
-cp /var/compass/ansible/development.ansible-hosts /etc/ansible/hosts
+mkdir /etc/ansible/
+cp ansible/development.ansible-hosts /etc/ansible/hosts
 ```
