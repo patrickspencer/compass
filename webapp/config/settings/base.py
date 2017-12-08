@@ -109,3 +109,5 @@ TEMPLATES = [
 AUTH_USER_MODEL = 'core.User'
 
 LOGIN_URL = '/login/'
+
+LIBRARY_URL = '/var/mathdeck_library/'
