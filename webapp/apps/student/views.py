@@ -7,6 +7,7 @@ from django.views.generic.edit import UpdateView
 from apps.core.models import Answer
 from apps.student.forms import AnswerForm
 from django.contrib import messages
+from django.conf import settings
 
 class Update(LoginRequiredView, UpdateView):
     model = Answer
@@ -27,6 +28,7 @@ class ProblemsShow(LoginRequiredView):
                               problem_id=problem_id)[0]
         return render(request, 'student/problems/show.jinja', {
             'problem_id': problem_id,
+            'settings': settings,
             'problem': problem_mapping.problem,
             'form': AnswerForm(),
         })

@@ -25,8 +25,9 @@ class User(Base):
 class Problem(Base):
     __tablename__ = 'problems'
 
-    id    = Column(Integer, primary_key=True)
-    value = Column(String)
+    id          = Column(Integer, primary_key=True)
+    value       = Column(String)
+    library_url = Column(String)
 
     def __repr__(self):
        return "<Problem(id='{}', value='{}')>".format(self.id, self.value)

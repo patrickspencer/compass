@@ -3,7 +3,8 @@
 
 {% block content %}
   <ul>
-    <li>problem value: {{ problem.value }}</li>
+    <li>problem value: {{ problem.library_url }}</li>
+    <li>settings url: {{ settings.LIBRARY_URL }}</li>
   </ul>
   <ul class="messages">
     {% for message in ctx.messages %}

@@ -5,7 +5,8 @@ from django.contrib.auth.models import AbstractUser
 # Order of the classes is important
 
 class Problem(models.Model):
-    value = models.TextField()
+    value = models.TextField(null=True)
+    library_url = models.TextField(null=True)
 
     class Meta:
         db_table = 'problems'

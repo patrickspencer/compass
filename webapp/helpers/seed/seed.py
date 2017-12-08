@@ -10,6 +10,7 @@ from sqlalchemy.sql import exists
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy import Column, Integer, String, ForeignKey
+from django.conf import settings
 
 settings.configure()
 
@@ -42,7 +43,8 @@ def create_problems():
     for n in range(0,20):
         problem_value = 'problem value %d' % (n+1)
         problem = Problem(
-          value=problem_value
+          value=problem_value,
+          library_url='/var/mathdeck_library/problem_' + str(n)
         )
         if not Session.query(exists().where(Problem.value==problem_value)).scalar():
             Session.add(problem)
