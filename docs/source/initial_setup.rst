@@ -99,7 +99,7 @@ Grant all access to usernames from
 
 .. code:: bash
 
-   REVOKE CONNECT ON DATABASE your_database FROM PUBLIC;
+   REVOKE CONNECT ON DATABASE compass_webapp_db FROM PUBLIC;
 
    GRANT CONNECT
    ON DATABASE compass_webapp_db
