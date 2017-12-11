@@ -109,5 +109,5 @@ TEMPLATES = [
 AUTH_USER_MODEL = 'core.User'
 
 LOGIN_URL = '/login/'
-
-LIBRARY_URL = '/var/mathdeck_library/'
+os.path.abspath(os.path.join(os.pardir, '/problem_library'))
+LIBRARY_URL = os.path.abspath(os.path.join(__file__, '..', '..', '..', '..', 'problem_lib'))

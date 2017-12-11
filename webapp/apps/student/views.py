@@ -8,6 +8,7 @@ from apps.core.models import Answer
 from apps.student.forms import AnswerForm
 from django.contrib import messages
 from django.conf import settings
+from mathdeck import load_module_from_path
 
 class Update(LoginRequiredView, UpdateView):
     model = Answer
@@ -23,12 +24,13 @@ class ProblemsIndex(LoginRequiredView):
 
 class ProblemsShow(LoginRequiredView):
     def get(self, request, problem_id):
+        problem_module = load_module_from_path(settings.LIBRARY_URL + '/example1')
         problem_mapping = ProblemMapping.objects.filter(
                               user_id = request.user.id,
                               problem_id=problem_id)[0]
         return render(request, 'student/problems/show.jinja', {
             'problem_id': problem_id,
-            'settings': settings,
+            'problem_module': problem_module,
             'problem': problem_mapping.problem,
             'form': AnswerForm(),
         })
